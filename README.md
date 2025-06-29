@@ -22,7 +22,7 @@ An system tool that automates the setup and configuration of a new machine, insp
 1. Clone this repository:
 
 ```bash
-git clone https://github.com/typecraft-dev/crucible.git
+git clone https://github.com/pszponder/crucible.git
 ```
 
 2. Run the setup script:
