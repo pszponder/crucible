@@ -19,23 +19,13 @@ An system tool that automates the setup and configuration of a new machine, insp
 
 ## Installation
 
-1. Clone this repository:
-
-```bash
-git clone https://github.com/pszponder/crucible.git
+```sh
+curl -fsSL https://raw.githubusercontent.com/pszponder/crucible/main/run.sh | bash
 ```
 
-2. Run the setup script:
-
-```bash
-./run.sh
-```
-
-3. Follow the prompts to select the packages you want to install.
-
-4. The script will handle the rest of the setup process.
-
-5. After the setup is complete, you can reboot your system to see the changes.
+Alternatively, clone the repo and manually run `run.sh` from within the cloned repo
 
 ## Resources / References
 - [typecraft-dev/crucible](https://github.com/typecraft-dev/crucible)
+- [typecraft - Hyprland for newbs](https://www.youtube.com/playlist?list=PLsz00TDipIfeDrFeSA56W1wPrYYg_Kd-b)
+- [basecamp/omarchy](https://github.com/basecamp/omarchy)
