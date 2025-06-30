@@ -14,6 +14,7 @@ flatpak update -y
 
 # List of Flatpak apps to install
 flatpak_apps=(
+  com.bitwarden.desktop
   io.podman_desktop.PodmanDesktop
 )
 

@@ -98,6 +98,7 @@ setup_arch() {
   $SCRIPTS_DIR/desktop.sh
   $SCRIPTS_DIR/mimetypes.sh
   $SCRIPTS_DIR/theme.sh
+  $SCRIPTS_DIR/passwords.sh
   $SCRIPTS_DIR/directories.sh
 
   # Ensure locate is up to date now that everything has been installed
