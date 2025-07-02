@@ -19,7 +19,4 @@ sudo systemctl start docker
 # Add the current user to the 'docker' group for permissionless access
 sudo usermod -aG docker "${USER}"
 
-# Apply group change immediately for this shell session (may still require logout for full effect)
-newgrp docker
-
 echo "✅ Docker installation and setup complete."
