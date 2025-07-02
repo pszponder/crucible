@@ -20,3 +20,4 @@ sudo systemctl start docker
 sudo usermod -aG docker "${USER}"
 
 echo "✅ Docker installation and setup complete."
+echo "⚠️ Please log out and back in to use Docker without sudo."

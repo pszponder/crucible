@@ -22,11 +22,11 @@ programs=(
 install_programs "${programs[@]}"
 
 # Copy and sync icon files
-mkdir -p ~/.local/share/icons/hicolor/48x48/apps/
-cp ~/.local/share/crucible/assets/icons/*.png ~/.local/share/icons/hicolor/48x48/apps/
-gtk-update-icon-cache ~/.local/share/icons/hicolor &>/dev/null
+mkdir -p $HOME/.local/share/icons/hicolor/48x48/apps/
+cp $HOME/.local/share/crucible/assets/icons/*.png $HOME/.local/share/icons/hicolor/48x48/apps/
+gtk-update-icon-cache $HOME/.local/share/icons/hicolor &>/dev/null
 
 # Copy .desktop declarations
-mkdir -p ~/.local/share/applications
-cp ~/.local/share/crucible/apps/*.desktop ~/.local/share/applications/
-update-desktop-database ~/.local/share/applications
+mkdir -p $HOME/.local/share/applications
+cp $HOME/.local/share/crucible/apps/*.desktop $HOME/.local/share/applications/
+update-desktop-database $HOME/.local/share/applications
