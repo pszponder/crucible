@@ -153,6 +153,29 @@ switch_chezmoi_to_ssh() {
   fi
 }
 
+# Function to prompt user before setting up dotfiles (skips if already initialized)
+prompt_dotfile_setup() {
+  local chezmoi_repo_dir="$HOME/.local/share/chezmoi"
+
+  if [ -d "$chezmoi_repo_dir/.git" ]; then
+    print_status "$GREEN" "✅ Dotfiles already initialized at $chezmoi_repo_dir. Skipping setup."
+    return
+  fi
+
+  echo
+  read -rp "$(echo -e "${YELLOW}❓ Would you like to set up your dotfiles using chezmoi? (y/N): ${NC}")" dotfiles_answer
+  case "$dotfiles_answer" in
+    [yY][eE][sS] | [yY])
+      print_status "$BLUE" "📂 Proceeding with dotfile setup..."
+      setup_dotfiles
+      ;;
+    *)
+      print_status "$YELLOW" "⏭️  Dotfile setup skipped."
+      ;;
+  esac
+}
+
+
 # Main logic to setup dotfiles and chezmoi
 setup_dotfiles() {
   install_chezmoi_if_needed
@@ -192,5 +215,5 @@ clear
 print_logo
 
 setup_workstation
-setup_dotfiles
+prompt_dotfile_setup
 prompt_user_restart
