@@ -6,6 +6,7 @@ source $HOME/.local/share/crucible/install/_utils.sh
 
 programs=(
   power-profiles-daemon
+  gobject-introspection
   python-gobject
 )
 
