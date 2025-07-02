@@ -2,7 +2,7 @@
 set -euo pipefail
 
 # Source the utils.sh script to access the install_programs function
-source ./utils.sh
+source ./_utils.sh
 
 programs=(
   # Use dark mode for QT apps too (like VLC and kdenlive)

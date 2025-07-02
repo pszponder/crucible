@@ -2,7 +2,7 @@
 set -euo pipefail
 
 # Source the utils.sh script to access the install_programs function
-source ./utils.sh
+source ./_utils.sh
 
 # Search for icons here: https://dashboardicons.com/
 # Then, select the PNG version and copy the URL

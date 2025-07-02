@@ -29,3 +29,16 @@ Alternatively, clone the repo and manually run `run.sh` from within the cloned r
 - [typecraft-dev/crucible](https://github.com/typecraft-dev/crucible)
 - [typecraft - Hyprland for newbs](https://www.youtube.com/playlist?list=PLsz00TDipIfeDrFeSA56W1wPrYYg_Kd-b)
 - [basecamp/omarchy](https://github.com/basecamp/omarchy)
+
+## TODOS
+
+- Install bitwarden cli
+- Install warp terminal
+- Install LibreWolf? What about Zen browser?
+    - Investigate firefox hardening and firefox privacy script
+    - https://github.com/simeononsecurity/FireFox-Privacy-Script
+- Thunnar file browser instead of gnome file browser?
+- Nightlight / redshift (dim light at night)
+- HyprPanel instead of waybar???
+    - https://www.youtube.com/watch?v=JmFZhRUs_mI&list=PLDK-KGioYK8olxTQHL_bpsopCnAXy2rbk&index=7
+- [Apple San Francisco Font](https://www.youtube.com/watch?v=siVRTy2AaEg)

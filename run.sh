@@ -78,11 +78,11 @@ setup_arch() {
   pacman -Q git &>/dev/null || sudo pacman -Sy --noconfirm --needed git
 
   echo -e "\nCloning Crucible..."
-  rm -rf ~/.local/share/crucible/
-  git clone https://github.com/pszponder/crucible.git ~/.local/share/crucible >/dev/null
+  rm -rf $HOME/.local/share/crucible/
+  git clone https://github.com/pszponder/crucible.git $HOME/.local/share/crucible >/dev/null
 
   echo -e "\n Workstation installation starting..."
-  SCRIPTS_DIR="~/.local/share/crucible/install"
+  SCRIPTS_DIR="$HOME/.local/share/crucible/install"
   $SCRIPTS_DIR/yay.sh
   $SCRIPTS_DIR/system.sh
   $SCRIPTS_DIR/fonts.sh
