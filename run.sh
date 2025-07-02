@@ -95,7 +95,7 @@ setup_arch() {
   $SCRIPTS_DIR/gui.sh
   $SCRIPTS_DIR/flatpak.sh
   $SCRIPTS_DIR/webapps.sh
-  # $SCRIPTS_DIR/desktop.sh
+  $SCRIPTS_DIR/desktop.sh
   $SCRIPTS_DIR/mimetypes.sh
   $SCRIPTS_DIR/theme.sh
   $SCRIPTS_DIR/passwords.sh
