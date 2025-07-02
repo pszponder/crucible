@@ -42,3 +42,4 @@ Alternatively, clone the repo and manually run `run.sh` from within the cloned r
 - HyprPanel instead of waybar???
     - https://www.youtube.com/watch?v=JmFZhRUs_mI&list=PLDK-KGioYK8olxTQHL_bpsopCnAXy2rbk&index=7
 - [Apple San Francisco Font](https://www.youtube.com/watch?v=siVRTy2AaEg)
+- [Hyprland Isn't Difficult](https://www.youtube.com/watch?v=FZ7Pklkt_xM)

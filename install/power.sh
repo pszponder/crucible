@@ -6,6 +6,8 @@ source $HOME/.local/share/crucible/install/_utils.sh
 
 programs=(
   power-profiles-daemon
+  libgudev
+  polkit-gobject
   gobject-introspection
   python-gobject
 )
@@ -13,14 +15,25 @@ programs=(
 # Call the install_programs function and pass the tools list
 install_programs "${programs[@]}"
 
-# Ensure python is installed (via mise)
+# Enable the power-profiles-daemon service
+echo "Enabling power-profiles-daemon service..."
+sudo systemctl enable --now power-profiles-daemon.service
 
-# Setting the performance profile can make a big difference. By default, most systems seem to start in balanced mode,
-# even if they're not running off a battery. So let's make sure that's changed to performance.
-if ls /sys/class/power_supply/BAT* &>/dev/null; then
-  # This computer runs on a battery
-  esctl set balanced
+# powerprofilesctl set power-saver
+# powerprofilesctl set balanced
+# powerprofilesctl set performance
+
+# 📝 Set performance profile if on AC, balanced if on battery
+if compgen -G "/sys/class/power_supply/BAT*" > /dev/null; then
+  # ✅ Battery is present (likely a laptop)
+  if grep -q "Charging" /sys/class/power_supply/BAT*/status 2>/dev/null; then
+    # 🔌 Plugged in and charging
+    powerprofilesctl set performance
+  else
+    # 🔋 Running on battery
+    powerprofilesctl set balanced
+  fi
 else
-  # This computer runs on power outlet
+  # ⚡️ No battery detected (likely a desktop)
   powerprofilesctl set performance
 fi

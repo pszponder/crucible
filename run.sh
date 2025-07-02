@@ -87,7 +87,7 @@ setup_arch() {
   $SCRIPTS_DIR/system.sh
   $SCRIPTS_DIR/fonts.sh
   $SCRIPTS_DIR/hyprland.sh
-  $SCRIPTS_DIR/power.sh
+  # $SCRIPTS_DIR/power.sh
   $SCRIPTS_DIR/bluetooth.sh
   $SCRIPTS_DIR/printer.sh
   $SCRIPTS_DIR/docker.sh
