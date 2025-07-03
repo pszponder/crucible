@@ -32,7 +32,8 @@ Alternatively, clone the repo and manually run `run.sh` from within the cloned r
 
 ## TODOS
 
-- Install bitwarden cli
+- Ensure flatpak installed apps show up in wofi
+- Install gemini cli
 - Install warp terminal
 - Install LibreWolf? What about Zen browser?
     - Investigate firefox hardening and firefox privacy script
