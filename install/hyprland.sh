@@ -13,15 +13,19 @@ programs=(
   hyprpolkitagent
   hyprshot
   mako
-  nwg-look
+  # nwg-look
   pipewire
-  qt5-wayland
+  qt5-waylan
   qt6-wayland
+  # In the future, use rofi mainline instead of rofi-wayland as the two will be merged
+  rofi-wayland
+  rofi-emoji
   swaybg
   swaync
   udiskie
   waybar
-  wofi
+  wlogout
+  wtype
   xdg-desktop-portal-gtk
   xdg-desktop-portal-kde
   xdg-desktop-portal-hyprland
