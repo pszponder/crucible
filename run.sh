@@ -85,6 +85,7 @@ setup_arch() {
   SCRIPTS_DIR="$HOME/.local/share/crucible/install"
   $SCRIPTS_DIR/yay.sh
   $SCRIPTS_DIR/system.sh
+  $SCRIPTS_DIR/gpu.sh
   $SCRIPTS_DIR/fonts.sh
   $SCRIPTS_DIR/hyprland.sh
   # $SCRIPTS_DIR/power.sh

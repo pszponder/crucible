@@ -32,7 +32,7 @@ Alternatively, clone the repo and manually run `run.sh` from within the cloned r
 
 ## TODOS
 
-- Fix zed editor so that it will launch
+- Install brave browser w/ recommended cli install command instead of yay (https://brave.com/linux/)
 - Add entries to wofi to shutdown, logout and restart and sleep
 - [Look into wlogout](https://github.com/ArtsyMacaw/wlogout)
 - Ensure flatpak installed apps show up in wofi
