@@ -32,6 +32,9 @@ Alternatively, clone the repo and manually run `run.sh` from within the cloned r
 
 ## TODOS
 
+- Fix zed editor so that it will launch
+- Add entries to wofi to shutdown, logout and restart and sleep
+- [Look into wlogout](https://github.com/ArtsyMacaw/wlogout)
 - Ensure flatpak installed apps show up in wofi
 - Install gemini cli
 - Install warp terminal
@@ -44,3 +47,6 @@ Alternatively, clone the repo and manually run `run.sh` from within the cloned r
     - https://www.youtube.com/watch?v=JmFZhRUs_mI&list=PLDK-KGioYK8olxTQHL_bpsopCnAXy2rbk&index=7
 - [Apple San Francisco Font](https://www.youtube.com/watch?v=siVRTy2AaEg)
 - [Hyprland Isn't Difficult](https://www.youtube.com/watch?v=FZ7Pklkt_xM)
+- Theme hyprland
+    - https://github.com/vinceliuice/Graphite-gtk-theme
+    - https://github.com/vinceliuice/Graphite-kde-theme

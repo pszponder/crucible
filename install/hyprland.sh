@@ -5,23 +5,30 @@ set -euo pipefail
 source $HOME/.local/share/crucible/install/_utils.sh
 
 programs=(
-  hyprland
-  hyprshot
-  hyprpicker
-  hyprlock
   hypridle
-  hyprpolkitagent
+  hyprland
   hyprland-qtutils
-  wofi
-  waybar
+  hyprlock
+  hyprpicker
+  hyprpolkitagent
+  hyprshot
   mako
+  nwg-look
+  pipewire
+  qt5-wayland
+  qt6-wayland
   swaybg
-  xdg-desktop-portal-hyprland
+  swaync
+  udiskie
+  waybar
+  wofi
   xdg-desktop-portal-gtk
+  xdg-desktop-portal-kde
+  xdg-desktop-portal-hyprland
 )
 
 # Call the install_programs function and pass the tools list
 install_programs "${programs[@]}"
 
 # Start Hyprland on first session
-echo "[[ -z \$DISPLAY && \$(tty) == /dev/tty1 ]] && exec Hyprland" >~/.bash_profile
+# echo "[[ -z \$DISPLAY && \$(tty) == /dev/tty1 ]] && exec Hyprland" >~/.bash_profile

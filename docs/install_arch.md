@@ -26,7 +26,7 @@ List of apps to install
 - nwg-look
 - swww
 - waybar / hyperpanel
-- udiskie
+- udiski
 - python-pywal16 / matugen-bin
 - hypridle
 - hyprlock

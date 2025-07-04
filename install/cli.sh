@@ -29,6 +29,7 @@ programs=(
   nushell
   ollama
   # podman
+  pacman-contrib
   postgresql-libs
   ripgrep
   starship
