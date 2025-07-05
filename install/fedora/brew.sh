@@ -75,6 +75,12 @@ add_homebrew_to_path() {
       echo "Homebrew is already in PATH."
     fi
 
+    # Prevent "BASHRCSOURCED" error by checking if it's set
+    if ! grep -q "BASHRCSOURCED" "$PROFILE"; then
+      echo "export BASHRCSOURCED=1" >> "$PROFILE"
+      echo "✅ BASHRCSOURCED variable set in $PROFILE"
+    fi
+
     # Source the profile to apply the changes immediately
     source "$PROFILE"
     echo "✅ PATH updated. Homebrew is now available."
