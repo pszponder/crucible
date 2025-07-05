@@ -4,6 +4,16 @@ set -euo pipefail
 # Source the utils.sh script to access the install_programs_yay function
 source $HOME/.local/share/crucible/install/_utils.sh
 
+# Temporarily add Homebrew to PATH for the current session
+if test -d ~/.linuxbrew; then
+  eval "$(~/.linuxbrew/bin/brew shellenv)"
+elif test -d /home/linuxbrew/.linuxbrew; then
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+else
+  echo "❌ Homebrew not found. Please install Homebrew first."
+  exit 1
+fi
+
 programs_dnf=(
   fish
   zsh
