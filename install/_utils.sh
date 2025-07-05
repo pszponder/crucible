@@ -58,7 +58,7 @@ install_programs_flatpak() {
 
   # Install tools using flatpak
   for app in "${program_list[@]}"; do
-    flatpak install -y "$app"
+    flatpak install -y flathub "$app"
   done
 
   echo "✅ Installation of programs complete (flatpak)!"

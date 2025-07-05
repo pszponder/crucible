@@ -9,7 +9,7 @@ source $HOME/.local/share/crucible/install/_utils.sh
 # List of Flatpak app IDs to install
 programs_flatpak=(
   com.github.tchx84.Flatseal
-  com.visualstudio.code
+  # com.visualstudio.code
   org.mozilla.firefox
   org.chromium.Chromium
   com.mattjakeman.ExtensionManager
@@ -25,7 +25,7 @@ programs_flatpak=(
   org.gimp.GIMP
   md.obsidian.Obsidian
   org.videolan.VLC
-  org.libreoffice.LibreOffice
+  # org.libreoffice.LibreOffice
 )
 
 # install_programs_dnf "${programs_dnf[@]}"
@@ -44,5 +44,5 @@ dnf check-update
 sudo dnf install code # or code-insiders
 
 # Install Ghostty Terminal
-dnf install --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/terra$releasever' terra-release
-dnf install ghostty
+sudo dnf install --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/terra$releasever' terra-release
+sudo dnf install ghostty
