@@ -26,22 +26,20 @@ programs_brew=(
   bottom
   btop
   chezmoi
-  clang
   curl
   direnv
   eza
   fastfetch
   fd
   fzf
+  gcc
   git
   git-delta
-  github-cli
+  gh
   jq
   just
   lazydocker
   lazygit
-  llvm
-  make
   mise
   neovim
   nushell
