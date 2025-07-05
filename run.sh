@@ -209,17 +209,21 @@ setup_dotfiles() {
   print_status "$YELLOW" "⚠️ Remember to set up your SSH keys if you haven't already!"
 }
 
-# Function to prompt the user if they want to restart the machine
-prompt_user_restart() {
+# Function to clean up this script's directory
+cleanup_self_directory() {
+  SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
   echo
-  read -rp "$(echo -e "${YELLOW}⚠️  Would you like to restart the machine now to ensure all changes are applied? (y/N): ${NC}")" restart_answer
-  case "$restart_answer" in
+  read -rp "$(echo -e "${YELLOW}🧹 Do you want to delete this script and its directory at ${SCRIPT_DIR}? (y/N): ${NC}")" delete_self
+
+  case "$delete_self" in
     [yY][eE][sS] | [yY])
-      print_status "$BLUE" "🔁 Restarting the system..."
-      sudo reboot
+      print_status "$RED" "🧨 Deleting directory: $SCRIPT_DIR"
+      cd ~  # Change directory to avoid deleting the current working directory
+      rm -rf "$SCRIPT_DIR"
       ;;
     *)
-      print_status "$YELLOW" "⏭️  Restart skipped. You may want to restart later to ensure all changes are applied."
+      print_status "$YELLOW" "⏭️  Cleanup skipped."
       ;;
   esac
 }
@@ -234,4 +238,5 @@ print_logo
 
 setup_workstation
 prompt_dotfile_setup
-prompt_user_restart
+
+cleanup_self_directory
