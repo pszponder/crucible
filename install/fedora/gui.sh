@@ -4,7 +4,7 @@ set -euo pipefail
 # Source the utils.sh script to access the install_programs_yay function
 source $HOME/.local/share/crucible/install/_utils.sh
 
-programs_dnf=()
+# programs_dnf=()
 
 # List of Flatpak app IDs to install
 programs_flatpak=(
@@ -28,7 +28,7 @@ programs_flatpak=(
   org.libreoffice.LibreOffice
 )
 
-install_programs_dnf "${programs_dnf[@]}"
+# install_programs_dnf "${programs_dnf[@]}"
 install_programs_flatpak "${programs_flatpak[@]}"
 
 # Install Brave Browser

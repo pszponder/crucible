@@ -49,6 +49,21 @@ install_programs_brew() {
   echo "✅ Installation of programs complete (brew)!"
 }
 
+
+# Function to install programs using Flatpak
+install_programs_flatpak() {
+  local program_list=("$@")  # Accept a list of programs passed as arguments
+
+  echo "🔄 Installing the following programs with Flatpak: ${program_list[*]}"
+
+  # Install tools using flatpak
+  for app in "${program_list[@]}"; do
+    flatpak install -y "$app"
+  done
+
+  echo "✅ Installation of programs complete (flatpak)!"
+}
+
 # Create a desktop launcher for a web app
 web2app() {
   if [ "$#" -ne 3 ]; then
