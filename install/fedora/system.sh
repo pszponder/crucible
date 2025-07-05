@@ -13,10 +13,6 @@ echo "Enabling RPM Fusion repositories for Fedora"
 sudo dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
 sudo dnf install -y https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 
-# Install Terra repository for Fedora
-echo "Installing Terra Repository for Fedora"
-sudo dnf install -y --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/terra$releasever' terra-release
-
 # Install Multimedia codecs
 echo "Installing multimedia codecs"
 sudo dnf install -y libavcodec-freeworld
