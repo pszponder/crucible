@@ -6,7 +6,7 @@ An system tool that automates the setup and configuration of a new machine, insp
 
 - 🔄 Automated system updates
 - 📦 Package installation
-- 🛠️ Automatic installation of yay AUR helper
+- 🛠️ Automatic installation of package installers
 - 🖥️ Desktop environment setup
 - 🎮 Flatpak integration for specific applications
 - ⚙️ Automatic service configuration
