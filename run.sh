@@ -82,7 +82,7 @@ setup_arch() {
   git clone https://github.com/pszponder/crucible.git $HOME/.local/share/crucible >/dev/null
 
   echo -e "\n Workstation installation starting..."
-  SCRIPTS_DIR="$HOME/.local/share/crucible/install"
+  SCRIPTS_DIR="$HOME/.local/share/crucible/install/arch"
   $SCRIPTS_DIR/yay.sh
   $SCRIPTS_DIR/system.sh
   $SCRIPTS_DIR/gpu.sh
