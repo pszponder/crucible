@@ -13,12 +13,12 @@ programs=(
 install_programs_dnf "${programs[@]}"  # or install_programs_apt, _yay, etc.
 
 # Set GTK and GNOME theme preferences
-echo "🎨 Applying dark theme settings..."
-gsettings set org.gnome.desktop.interface gtk-theme "Adwaita-dark"
-gsettings set org.gnome.desktop.interface color-scheme "prefer-dark"
+# echo "🎨 Applying dark theme settings..."
+# gsettings set org.gnome.desktop.interface gtk-theme "Adwaita-dark"
+# gsettings set org.gnome.desktop.interface color-scheme "prefer-dark"
 
 # Set the Papirus icon theme
-echo "🎨 Setting icon theme to Papirus..."
-gsettings set org.gnome.desktop.interface icon-theme "Papirus"
+# echo "🎨 Setting icon theme to Papirus..."
+# gsettings set org.gnome.desktop.interface icon-theme "Papirus"
 
 echo "✅ Theme and icon configuration complete!"
