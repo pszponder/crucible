@@ -14,11 +14,11 @@ sudo dnf install -y https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-non
 
 # Install Terra repository for Fedora
 echo "Installing Terra Repository for Fedora"
-sudo dnf install --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/terra$releasever' terra-release
+sudo dnf install -y --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/terra$releasever' terra-release
 
 # Install Multimedia codecs
 echo "Installing multimedia codecs"
-sudo dnf install libavcodec-freeworld
+sudo dnf install -y libavcodec-freeworld
 
 # Switch to full ffmpeg
 echo "Switching to full ffmpeg"

@@ -8,7 +8,6 @@ programs_dnf=(
   fish
   zsh
   wl-clipboard
-  wl-clip-persist
 )
 
 programs_brew=(
