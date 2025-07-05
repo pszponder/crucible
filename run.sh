@@ -115,7 +115,26 @@ setup_debian() {
 # Example of Fedora setup
 setup_fedora() {
   print_status "$GREEN" "💻 Setting up Fedora workstation..."
-  # Place specific Fedora setup steps here
+
+  # Ensure git is installed
+  rpm -q git &>/dev/null || sudo dnf install -y git
+
+  echo -e "\nCloning Crucible..."
+  rm -rf $HOME/.local/share/crucible/
+  git clone https://github.com/pszponder/crucible.git $HOME/.local/share/crucible >/dev/null
+
+  echo -e "\n Workstation installation starting..."
+  SCRIPTS_DIR="$HOME/.local/share/crucible/install/fedora"
+  $SCRIPTS_DIR/initial_setup.sh
+  $SCRIPTS_DIR/flatpak.sh
+  $SCRIPTS_DIR/docker.sh
+  $SCRIPTS_DIR/brew.sh
+  $SCRIPTS_DIR/cli.sh
+  $SCRIPTS_DIR/gui.sh
+  $SCRIPTS_DIR/webapps.sh
+  $SCRIPTS_DIR/fonts.sh
+  $SCRIPTS_DIR/theme.sh
+  $SCRIPTS_DIR/directories.sh
 }
 
 # Function to check if chezmoi is installed

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Source the utils.sh script to access the install_programs function
+# Source the utils.sh script to access the install_programs_yay function
 source "$HOME/.local/share/crucible/install/_utils.sh"
 
 echo "🎮 GPU Driver Installation for Arch Linux + Hyprland"
@@ -54,6 +54,6 @@ case "$gpu_choice" in
 esac
 
 # Install the chosen drivers
-install_programs "${gpu_drivers[@]}"
+install_programs_yay "${gpu_drivers[@]}"
 
 echo "✅ GPU drivers installed for your selected configuration."

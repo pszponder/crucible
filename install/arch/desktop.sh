@@ -2,7 +2,7 @@
 set -euo pipefail
 shopt -s nullglob  # allow globs that match nothing to expand to nothing
 
-# Source the utils.sh script to access the install_programs function
+# Source the utils.sh script to access the install_programs_yay function
 source "$HOME/.local/share/crucible/install/_utils.sh"
 
 programs=(
@@ -20,7 +20,7 @@ programs=(
 )
 
 # Install desktop-related tools
-install_programs "${programs[@]}"
+install_programs_yay "${programs[@]}"
 
 # Copy and sync icon files (only if they exist)
 ICON_SRC=("$HOME/.local/share/crucible/assets/icons/"*.png)

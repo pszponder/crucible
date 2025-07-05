@@ -2,7 +2,7 @@
 set -euo pipefail
 
 # Function to install programs using yay
-install_programs() {
+install_programs_yay() {
   local program_list=("$@")  # Accept a list of programs passed as arguments
 
   # Format the list of programs for better readability
@@ -13,6 +13,40 @@ install_programs() {
 
   # Confirm installation
   echo "✅ Installation of programs complete!"
+}
+
+# Function to install programs using dnf
+install_programs_dnf() {
+  local program_list=("$@")  # Accept a list of programs passed as arguments
+
+  echo "🔄 Installing the following programs with dnf: ${program_list[*]}"
+
+  sudo dnf install -y "${program_list[@]}"
+
+  echo "✅ Installation of programs complete (dnf)!"
+}
+
+# Function to install programs using apt
+install_programs_apt() {
+  local program_list=("$@")  # Accept a list of programs passed as arguments
+
+  echo "🔄 Installing the following programs with apt: ${program_list[*]}"
+
+  sudo apt update
+  sudo apt install -y "${program_list[@]}"
+
+  echo "✅ Installation of programs complete (apt)!"
+}
+
+# Function to install programs using Homebrew
+install_programs_brew() {
+  local program_list=("$@")  # Accept a list of programs passed as arguments
+
+  echo "🔄 Installing the following programs with Homebrew: ${program_list[*]}"
+
+  brew install "${program_list[@]}"
+
+  echo "✅ Installation of programs complete (brew)!"
 }
 
 # Create a desktop launcher for a web app

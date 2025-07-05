@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Source the utils.sh script to access the install_programs function
+# Source the utils.sh script to access the install_programs_yay function
 source $HOME/.local/share/crucible/install/_utils.sh
 
 programs=(
@@ -27,5 +27,5 @@ programs=(
   zoom
 )
 
-# Call the install_programs function and pass the tools list
-install_programs "${programs[@]}"
+# Call the install_programs_yay function and pass the tools list
+install_programs_yay "${programs[@]}"
