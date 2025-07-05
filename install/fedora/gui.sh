@@ -10,7 +10,7 @@ source $HOME/.local/share/crucible/install/_utils.sh
 programs_flatpak=(
   com.github.tchx84.Flatseal
   # com.visualstudio.code
-  org.mozilla.firefox
+  # org.mozilla.firefox
   org.chromium.Chromium
   com.mattjakeman.ExtensionManager
   org.gnome.Extensions
@@ -26,6 +26,7 @@ programs_flatpak=(
   md.obsidian.Obsidian
   org.videolan.VLC
   # org.libreoffice.LibreOffice
+  com.bitwarden.desktop
 )
 
 # install_programs_dnf "${programs_dnf[@]}"
