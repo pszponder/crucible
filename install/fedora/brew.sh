@@ -49,7 +49,45 @@ install_linuxbrew() {
   echo "✅ Homebrew installation complete"
 }
 
+# Add Homebrew to PATH if not already added
+add_homebrew_to_path() {
+  # Define the Homebrew installation path
+  BREW_PATH="$HOME/.linuxbrew/bin"
+  
+  # For macOS installations, add the Homebrew path to the shell profile
+  if [[ ! ":$PATH:" == *":$BREW_PATH:"* ]]; then
+    echo "🔧 Adding Homebrew to PATH..."
+
+    # Add to the appropriate shell profile (bash or zsh)
+    if [[ -n "$BASH_VERSION" ]]; then
+      PROFILE="$HOME/.bashrc"  # Use .bashrc for interactive shells
+    elif [[ -n "$ZSH_VERSION" ]]; then
+      PROFILE="$HOME/.zshrc"
+    else
+      PROFILE="$HOME/.bashrc"  # Default to .bashrc if the shell is unknown
+    fi
+
+    # Append Homebrew to the PATH if not already present
+    if ! grep -q "$BREW_PATH" "$PROFILE"; then
+      echo "export PATH=\"$BREW_PATH:\$PATH\"" >> "$PROFILE"
+      echo "✅ Homebrew added to PATH in $PROFILE"
+    else
+      echo "Homebrew is already in PATH."
+    fi
+
+    # Source the profile to apply the changes immediately
+    source "$PROFILE"
+    echo "✅ PATH updated. Homebrew is now available."
+  else
+    echo "Homebrew is already in the PATH."
+  fi
+}
+
 # 🧭 Execute
 install_linuxbrew
 
+# Add Homebrew to the PATH
+add_homebrew_to_path
+
 echo "✅ Setup complete. Run 'brew doctor' to verify your installation."
+
