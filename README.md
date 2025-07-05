@@ -19,11 +19,17 @@ An system tool that automates the setup and configuration of a new machine, insp
 
 ## Installation
 
-```sh
-curl -fsSL https://raw.githubusercontent.com/pszponder/crucible/main/run.sh | bash
+1. Clone this repository:
+
+```bash
+git clone https://github.com/pszponder/crucible.git
 ```
 
-Alternatively, clone the repo and manually run `run.sh` from within the cloned repo
+2. Navigate inside the cloned directory and run the setup script:
+
+```bash
+./run.sh
+```
 
 ## Resources / References
 - [typecraft-dev/crucible](https://github.com/typecraft-dev/crucible)
