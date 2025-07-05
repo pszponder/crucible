@@ -1,51 +1,60 @@
 #!/usr/bin/env bash
+
 set -euo pipefail
 
-echo "🔤 Installing Nerd Fonts and Noto Color Emoji..."
-
-# Define list of Nerd Fonts to install from https://github.com/ryanoasis/nerd-fonts/releases
+# List of Nerd Fonts to install
 NERD_FONTS=(
-  CascadiaCode
-  JetBrainsMono
+  "JetBrainsMono"
+  "CascadiaCode"
+  "ComicShannsMono"
+  "Meslo"
+  "NerdFontsSymbolsOnly"
 )
 
-# Font install directory
-FONT_DIR="$HOME/.local/share/fonts"
-mkdir -p "$FONT_DIR"
+NERD_FONT_VERSION="3.4.0"
+BASE_URL="https://github.com/ryanoasis/nerd-fonts/releases/download/v${NERD_FONT_VERSION}"
 
-# Function to install a Nerd Font from the official GitHub release
-install_nerd_font() {
-  local font_name="$1"
-  local url="https://github.com/ryanoasis/nerd-fonts/releases/latest/download/${font_name}.zip"
+FONT_BASE_DIR="${HOME}/.local/share/fonts/NerdFonts"
+NOTO_EMOJI_FONT_DIR="${HOME}/.local/share/fonts/NotoEmoji"
 
-  echo "⬇️ Downloading ${font_name} Nerd Font..."
-  curl -fLo "${font_name}.zip" "$url"
+# Create font directories
+mkdir -p "$FONT_BASE_DIR"
+mkdir -p "$NOTO_EMOJI_FONT_DIR"
+cd "$FONT_BASE_DIR"
 
-  echo "📦 Extracting ${font_name} to $FONT_DIR..."
-  unzip -oq "${font_name}.zip" -d "$FONT_DIR"
-  rm -f "${font_name}.zip"
-}
+# Install Nerd Fonts
+for FONT in "${NERD_FONTS[@]}"; do
+  echo "⬇️ Installing ${FONT} Nerd Font..."
 
-# Install all defined Nerd Fonts
-for font in "${NERD_FONTS[@]}"; do
-  install_nerd_font "$font"
+  # Download and extract Nerd Fonts
+  wget -q "${BASE_URL}/${FONT}.zip" -O "${FONT}.zip" || { echo "Failed to download ${FONT}"; exit 1; }
+  unzip -o "${FONT}.zip" -d "${FONT}" || { echo "Failed to unzip ${FONT}"; exit 1; }
+  rm "${FONT}.zip"
 done
 
-# Install Noto Color Emoji from the latest Google Fonts release
-echo "⬇️ Downloading Noto Color Emoji..."
-EMOJI_URL="$(curl -sL https://api.github.com/repos/googlefonts/noto-emoji/releases/latest \
-  | grep browser_download_url \
-  | grep -i '\.zip' \
-  | head -n1 \
-  | cut -d '"' -f4)"
+# Install Noto Emoji Fonts
+echo "⬇️ Installing Noto Emoji fonts..."
 
-curl -fLo noto-emoji.zip "$EMOJI_URL"
-echo "📦 Extracting Noto Color Emoji..."
-unzip -oq noto-emoji.zip -d "$FONT_DIR"
-rm -f noto-emoji.zip
+# Correct Noto Emoji download URL for v2.048 release
+NOTO_EMOJI_URL="https://github.com/googlefonts/noto-emoji/archive/refs/tags/v2.048.zip"
 
-# Refresh font cache
-echo "🔃 Refreshing font cache..."
-fc-cache -fv "$FONT_DIR"
+# Download and unzip Noto Emoji fonts
+wget -q "$NOTO_EMOJI_URL" -O "NotoEmoji.zip" || { echo "Failed to download Noto Emoji"; exit 1; }
 
-echo "✅ Fonts installed successfully in $FONT_DIR"
+# Unzip Noto Emoji
+unzip -o "NotoEmoji.zip" -d "$NOTO_EMOJI_FONT_DIR" || { echo "Failed to unzip Noto Emoji"; exit 1; }
+
+# Clean up
+rm "NotoEmoji.zip"
+
+# Verify if the files were properly extracted
+echo "📁 Files in Noto Emoji font directory:"
+ls -lh "$NOTO_EMOJI_FONT_DIR"
+
+# Update font cache
+echo "🗂 Updating font cache..."
+fc-cache -fv "$FONT_BASE_DIR"
+fc-cache -fv "$NOTO_EMOJI_FONT_DIR"
+
+echo "✅ All requested fonts, including Noto Emoji, installed successfully."
+
