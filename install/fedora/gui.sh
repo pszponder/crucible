@@ -12,7 +12,6 @@ programs_flatpak=(
   com.visualstudio.code
   org.mozilla.firefox
   org.chromium.Chromium
-  com.brave.Browser
   com.mattjakeman.ExtensionManager
   org.gnome.Extensions
   com.jeffser.Alpaca
@@ -31,6 +30,9 @@ programs_flatpak=(
 
 install_programs_dnf "${programs_dnf[@]}"
 install_programs_flatpak "${programs_flatpak[@]}"
+
+# Install Brave Browser
+curl -fsS https://dl.brave.com/install.sh | sh
 
 # Install Zed editor
 curl -f https://zed.dev/install.sh | sh

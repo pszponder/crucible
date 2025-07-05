@@ -125,7 +125,7 @@ setup_fedora() {
 
   echo -e "\n Workstation installation starting..."
   SCRIPTS_DIR="$HOME/.local/share/crucible/install/fedora"
-  $SCRIPTS_DIR/initial_setup.sh
+  $SCRIPTS_DIR/system.sh
   $SCRIPTS_DIR/flatpak.sh
   $SCRIPTS_DIR/docker.sh
   $SCRIPTS_DIR/brew.sh

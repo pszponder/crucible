@@ -45,7 +45,7 @@ configure_flathub() {
     echo "✅ Flathub is already configured."
   else
     echo "🔗 Adding Flathub remote..."
-    flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+    flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
   fi
 }
 
