@@ -131,9 +131,7 @@ setup_fedora() {
   $SCRIPTS_DIR/brew.sh
   $SCRIPTS_DIR/cli.sh
   $SCRIPTS_DIR/gui.sh
-  $SCRIPTS_DIR/webapps.sh
   $SCRIPTS_DIR/fonts.sh
-  $SCRIPTS_DIR/theme.sh
   $SCRIPTS_DIR/directories.sh
 }
 
