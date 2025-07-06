@@ -13,7 +13,9 @@ An system tool that automates the setup and configuration of a new machine, insp
 
 ## Prerequisites
 
-- A fresh installation
+- A fresh linux installation (one of the following):
+    - Arch Linux - Hyprland
+    - Fedora - Cosmic
 - Internet connection
 - sudo privileges
 
@@ -36,8 +38,9 @@ git clone https://github.com/pszponder/crucible.git
 - [typecraft - Hyprland for newbs](https://www.youtube.com/playlist?list=PLsz00TDipIfeDrFeSA56W1wPrYYg_Kd-b)
 - [basecamp/omarchy](https://github.com/basecamp/omarchy)
 
-## TODOS
+## TODOs
 
+### Arch / Hyprland
 - Install brave browser w/ recommended cli install command instead of yay (https://brave.com/linux/)
 - Add entries to wofi to shutdown, logout and restart and sleep
 - [Look into wlogout](https://github.com/ArtsyMacaw/wlogout)
@@ -55,4 +58,6 @@ git clone https://github.com/pszponder/crucible.git
 - [Hyprland Isn't Difficult](https://www.youtube.com/watch?v=FZ7Pklkt_xM)
 - Theme hyprland
     - https://github.com/vinceliuice/Graphite-gtk-theme
-    - https://github.com/vinceliuice/Graphite-kde-theme
+    - https://githb.com/vinceliuice/Graphite-kde-theme
+
+### Fedora - Cosmic

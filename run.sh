@@ -126,13 +126,14 @@ setup_fedora() {
   echo -e "\n Workstation installation starting..."
   SCRIPTS_DIR="$HOME/.local/share/crucible/install/fedora"
   $SCRIPTS_DIR/system.sh
+  $SCRIPTS_DIR/directories.sh
   $SCRIPTS_DIR/flatpak.sh
   $SCRIPTS_DIR/docker.sh
   $SCRIPTS_DIR/brew.sh
   $SCRIPTS_DIR/cli.sh
   $SCRIPTS_DIR/gui.sh
   $SCRIPTS_DIR/fonts.sh
-  $SCRIPTS_DIR/directories.sh
+  $SCRIPTS_DIR/theme.sh
 }
 
 # Function to check if chezmoi is installed
