@@ -52,3 +52,11 @@ echo "📦 Installing Warp..."
 sudo dnf install -y "$TMP_WARP_RPM"
 rm -f "$TMP_WARP_RPM"
 echo "✅ Warp installation completed!"
+
+# Install Google Chrome (Stable) via official RPM
+echo "🌐 Installing Google Chrome..."
+TMP_CHROME_RPM="$(mktemp --suffix=.rpm)"
+curl -fsSL https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm -o "$TMP_CHROME_RPM"
+sudo dnf install -y "$TMP_CHROME_RPM"
+rm -f "$TMP_CHROME_RPM"
+echo "✅ Google Chrome installation completed!"
