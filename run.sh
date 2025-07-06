@@ -27,8 +27,19 @@ print_logo() {
 EOF
 }
 
-# Function to detect and setup workstation based on OS
-setup_workstation() {
+# Function to detect and setup machine based on OS
+setup_machine() {
+  # Ask the user if they want to set up the machine at all
+  read -rp "$(echo -e "${YELLOW}❓ Would you like to set up your machine? (y/N): ${NC}")" setup_machine_answer
+  case "$setup_machine_answer" in
+    [yY][eE][sS] | [yY])
+      ;;
+    *)
+      print_status "$YELLOW" "⏭️  Machine setup skipped."
+      return
+      ;;
+  esac
+
   # Check for OS type using /etc/os-release
   if [ -f /etc/os-release ]; then
     source /etc/os-release
@@ -48,21 +59,22 @@ setup_workstation() {
         ;;
     esac
 
-    # Ask the user if they want to set up their workstation
-    read -rp "$(echo -e "${YELLOW}❓ Would you like to set up your $NAME workstation? (y/N): ${NC}")" setup_answer
-    case "$setup_answer" in
-      [yY][eE][sS] | [yY])
-        print_status "$BLUE" "⚙️  Starting $NAME workstation setup..."
-        # Call respective setup function based on the OS
-        case "$ID" in
-          arch) setup_arch ;;
-          debian|ubuntu) setup_debian ;;
-          fedora) setup_fedora ;;
-        esac
-        ;;
-      *)
-        print_status "$YELLOW" "⏭️  $NAME workstation setup skipped."
-        ;;
+    # Ask the user if they want to set up a server or a workstation
+    echo
+    read -rp "$(echo -e "${YELLOW}❓ Do you want to set up a server or a workstation? [s/w] (default: server): ${NC}")" machine_type
+    machine_type="${machine_type,,}"
+    if [[ "$machine_type" == "w" || "$machine_type" == "workstation" ]]; then
+      machine_type="workstation"
+    else
+      machine_type="server"
+    fi
+
+    # Directly execute the correct setup function
+    print_status "$BLUE" "⚙️  Starting $NAME $machine_type setup..."
+    case "$ID" in
+      arch) setup_arch "$machine_type" ;;
+      debian|ubuntu) setup_debian "$machine_type" ;;
+      fedora) setup_fedora "$machine_type" ;;
     esac
   else
     print_status "$RED" "❌ Unable to detect OS. This script relies on /etc/os-release."
@@ -72,7 +84,8 @@ setup_workstation() {
 
 # Example of Arch setup
 setup_arch() {
-  print_status "$GREEN" "💻 Setting up Arch workstation..."
+  local machine_type="$1"
+  print_status "$GREEN" "💻 Setting up Arch $machine_type..."
 
   # Ensure git is installed
   pacman -Q git &>/dev/null || sudo pacman -Sy --noconfirm --needed git
@@ -81,26 +94,32 @@ setup_arch() {
   rm -rf $HOME/.local/share/crucible/
   git clone https://github.com/pszponder/crucible.git $HOME/.local/share/crucible >/dev/null
 
-  echo -e "\n Workstation installation starting..."
-  SCRIPTS_DIR="$HOME/.local/share/crucible/install/arch"
-  $SCRIPTS_DIR/yay.sh
-  $SCRIPTS_DIR/system.sh
-  $SCRIPTS_DIR/gpu.sh
-  $SCRIPTS_DIR/fonts.sh
-  $SCRIPTS_DIR/hyprland.sh
-  # $SCRIPTS_DIR/power.sh
-  $SCRIPTS_DIR/bluetooth.sh
-  $SCRIPTS_DIR/printer.sh
-  $SCRIPTS_DIR/docker.sh
-  $SCRIPTS_DIR/cli.sh
-  $SCRIPTS_DIR/gui.sh
-  $SCRIPTS_DIR/flatpak.sh
-  $SCRIPTS_DIR/webapps.sh
-  $SCRIPTS_DIR/desktop.sh
-  $SCRIPTS_DIR/mimetypes.sh
-  $SCRIPTS_DIR/theme.sh
-  $SCRIPTS_DIR/passwords.sh
-  $SCRIPTS_DIR/directories.sh
+  echo -e "\n $machine_type installation starting..."
+  SCRIPTS_DIR="$HOME/.local/share/crucible/install"
+
+  # Common scripts for both server and workstation
+  $SCRIPTS_DIR/arch/yay.sh
+  $SCRIPTS_DIR/arch/system.sh
+  $SCRIPTS_DIR/arch/gpu.sh
+  $SCRIPTS_DIR/arch/fonts.sh
+  $SCRIPTS_DIR/arch/docker.sh
+  $SCRIPTS_DIR/arch/cli.sh
+  $SCRIPTS_DIR/arch/mimetypes.sh
+  $SCRIPTS_DIR/arch/directories.sh
+  $SCRIPTS_DIR/common/ai.sh
+
+  if [[ "$machine_type" == "workstation" ]]; then
+    $SCRIPTS_DIR/arch/hyprland.sh
+    # $SCRIPTS_DIR/arch/power.sh
+    $SCRIPTS_DIR/arch/bluetooth.sh
+    $SCRIPTS_DIR/arch/printer.sh
+    $SCRIPTS_DIR/arch/gui.sh
+    $SCRIPTS_DIR/arch/flatpak.sh
+    $SCRIPTS_DIR/arch/webapps.sh
+    $SCRIPTS_DIR/arch/desktop.sh
+    $SCRIPTS_DIR/arch/theme.sh
+    $SCRIPTS_DIR/arch/passwords.sh
+  fi
 
   # Ensure locate is up to date now that everything has been installed
   sudo updatedb
@@ -108,13 +127,16 @@ setup_arch() {
 
 # Example of Debian/Ubuntu setup
 setup_debian() {
-  print_status "$GREEN" "💻 Setting up Debian/Ubuntu workstation..."
+  local machine_type="$1"
+  print_status "$GREEN" "💻 Setting up Debian/Ubuntu $machine_type..."
   # Place specific Debian/Ubuntu setup steps here
+  # Use $machine_type to branch logic as above
 }
 
 # Example of Fedora setup
 setup_fedora() {
-  print_status "$GREEN" "💻 Setting up Fedora workstation..."
+  local machine_type="$1"
+  print_status "$GREEN" "💻 Setting up Fedora $machine_type..."
 
   # Ensure git is installed
   rpm -q git &>/dev/null || sudo dnf install -y git
@@ -123,17 +145,23 @@ setup_fedora() {
   rm -rf $HOME/.local/share/crucible/
   git clone https://github.com/pszponder/crucible.git $HOME/.local/share/crucible >/dev/null
 
-  echo -e "\n Workstation installation starting..."
-  SCRIPTS_DIR="$HOME/.local/share/crucible/install/fedora"
-  $SCRIPTS_DIR/system.sh
-  $SCRIPTS_DIR/directories.sh
-  $SCRIPTS_DIR/flatpak.sh
-  $SCRIPTS_DIR/docker.sh
-  $SCRIPTS_DIR/brew.sh
-  $SCRIPTS_DIR/cli.sh
-  $SCRIPTS_DIR/gui.sh
-  $SCRIPTS_DIR/fonts.sh
-  $SCRIPTS_DIR/theme.sh
+  echo -e "\n $machine_type installation starting..."
+  SCRIPTS_DIR="$HOME/.local/share/crucible/install"
+
+  # Common scripts for both server and workstation
+  $SCRIPTS_DIR/fedora/system.sh
+  $SCRIPTS_DIR/fedora/directories.sh
+  $SCRIPTS_DIR/fedora/flatpak.sh
+  $SCRIPTS_DIR/fedora/docker.sh
+  $SCRIPTS_DIR/fedora/brew.sh
+  $SCRIPTS_DIR/fedora/cli.sh
+  $SCRIPTS_DIR/common/ai.sh
+
+  if [[ "$machine_type" == "workstation" ]]; then
+    $SCRIPTS_DIR/fedora/gui.sh
+    $SCRIPTS_DIR/fedora/fonts.sh
+    $SCRIPTS_DIR/fedora/theme.sh
+  fi
 }
 
 # Function to check if chezmoi is installed
@@ -237,7 +265,7 @@ cleanup_self_directory() {
 clear
 print_logo
 
-setup_workstation
+setup_machine
 prompt_dotfile_setup
 
 cleanup_self_directory
