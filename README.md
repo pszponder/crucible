@@ -40,6 +40,9 @@ git clone https://github.com/pszponder/crucible.git
 
 ## TODOs
 
+### General
+- Add a section for debian / ubuntu install
+
 ### Arch / Hyprland
 - Install brave browser w/ recommended cli install command instead of yay (https://brave.com/linux/)
 - Add entries to wofi to shutdown, logout and restart and sleep
