@@ -2,7 +2,7 @@
 set -euo pipefail
 
 # Source the utils.sh script to access the install_programs_yay function
-source $HOME/.local/share/crucible/install/_utils.sh
+source "$HOME/.local/share/crucible/install/_utils.sh"
 
 # programs_dnf=()
 
@@ -42,4 +42,13 @@ curl -f https://zed.dev/install.sh | sh
 sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
 echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\nautorefresh=1\ntype=rpm-md\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" | sudo tee /etc/yum.repos.d/vscode.repo > /dev/null
 dnf check-update
-sudo dnf install code # or code-insiders
+sudo dnf install -y code # or code-insiders
+
+# Install Warp terminal
+echo "📥 Downloading Warp RPM..."
+TMP_WARP_RPM="$(mktemp --suffix=.rpm)"
+curl -fsSL "https://app.warp.dev/get_warp?package=rpm" -o "$TMP_WARP_RPM"
+echo "📦 Installing Warp..."
+sudo dnf install -y "$TMP_WARP_RPM"
+rm -f "$TMP_WARP_RPM"
+echo "✅ Warp installation completed!"
