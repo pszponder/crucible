@@ -49,7 +49,6 @@ install_programs_brew() {
   echo "✅ Installation of programs complete (brew)!"
 }
 
-
 # Function to install programs using Flatpak
 install_programs_flatpak() {
   local program_list=("$@")  # Accept a list of programs passed as arguments
@@ -64,75 +63,64 @@ install_programs_flatpak() {
   echo "✅ Installation of programs complete (flatpak)!"
 }
 
-# Create a desktop launcher for a web app
 web2app() {
+  # ------------------------
+  # 🌐 Create a Web App Launcher
+  # Usage: web2app "AppName" "AppURL" "IconURL"
+  # ------------------------
+
   if [ "$#" -ne 3 ]; then
-    echo "Usage: web2app <AppName> <AppURL> <IconURL> (IconURL must be in PNG -- use https://dashboardicons.com)"
+    echo "Usage: web2app <AppName> <AppURL> <IconURL>"
+    echo "Example: web2app 'Gmail' 'https://mail.google.com' 'https://example.com/gmail.png'"
     return 1
   fi
 
   local APP_NAME="$1"
   local APP_URL="$2"
   local ICON_URL="$3"
+
   local ICON_DIR="$HOME/.local/share/applications/icons"
-  local DESKTOP_FILE="$HOME/.local/share/applications/${APP_NAME}.desktop"
   local ICON_PATH="${ICON_DIR}/${APP_NAME}.png"
+  local DESKTOP_FILE="$HOME/.local/share/applications/${APP_NAME}.desktop"
 
   mkdir -p "$ICON_DIR"
 
-  if ! curl -sL -o "$ICON_PATH" "$ICON_URL"; then
-    echo "Error: Failed to download icon."
+  # Detect the first available browser
+  local BROWSER_CMD=""
+  local candidates=("brave" "brave-browser" "chrome" "google-chrome" "chromium")
+  for browser in "${candidates[@]}"; do
+    if command -v "$browser" &>/dev/null; then
+      BROWSER_CMD="$browser"
+      break
+    fi
+  done
+
+  if [ -z "$BROWSER_CMD" ]; then
+    echo "Error: No supported browser found (brave, chrome, chromium)."
     return 1
   fi
 
+  # Download the icon
+  if ! curl -sL -o "$ICON_PATH" "$ICON_URL"; then
+    echo "Error: Failed to download icon from $ICON_URL"
+    return 1
+  fi
+
+  # Create the .desktop launcher
   cat > "$DESKTOP_FILE" <<EOF
 [Desktop Entry]
 Version=1.0
 Name=$APP_NAME
 Comment=$APP_NAME
-Exec=chromium --new-window --ozone-platform=wayland --app="$APP_URL" --name="$APP_NAME" --class="$APP_NAME"
+Exec=$BROWSER_CMD --new-window --app="$APP_URL" --name="$APP_NAME" --class="$APP_NAME"
 Terminal=false
 Type=Application
 Icon=$ICON_PATH
+Categories=GTK;
+MimeType=text/html;text/xml;application/xhtml_xml;
 StartupNotify=true
 EOF
 
   chmod +x "$DESKTOP_FILE"
-}
-
-
-# Create a desktop launcher for a web app
-web2appbrave() {
-  if [ "$#" -ne 3 ]; then
-    echo "Usage: web2app <AppName> <AppURL> <IconURL> (IconURL must be in PNG -- use https://dashboardicons.com)"
-    return 1
-  fi
-
-  local APP_NAME="$1"
-  local APP_URL="$2"
-  local ICON_URL="$3"
-  local ICON_DIR="$HOME/.local/share/applications/icons"
-  local DESKTOP_FILE="$HOME/.local/share/applications/${APP_NAME}.desktop"
-  local ICON_PATH="${ICON_DIR}/${APP_NAME}.png"
-
-  mkdir -p "$ICON_DIR"
-
-  if ! curl -sL -o "$ICON_PATH" "$ICON_URL"; then
-    echo "Error: Failed to download icon."
-    return 1
-  fi
-
-  cat > "$DESKTOP_FILE" <<EOF
-[Desktop Entry]
-Version=1.0
-Name=$APP_NAME
-Comment=$APP_NAME
-Exec=brave --new-window --ozone-platform=wayland --app="$APP_URL" --name="$APP_NAME" --class="$APP_NAME"
-Terminal=false
-Type=Application
-Icon=$ICON_PATH
-StartupNotify=true
-EOF
-
-  chmod +x "$DESKTOP_FILE"
+  echo "✅ Created desktop launcher for $APP_NAME using $BROWSER_CMD"
 }
