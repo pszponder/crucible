@@ -12,6 +12,7 @@ programs_flatpak=(
   # com.visualstudio.code
   # org.mozilla.firefox
   org.chromium.Chromium
+  app.zen_browser.zen
   com.mattjakeman.ExtensionManager
   org.gnome.Extensions
   com.jeffser.Alpaca
@@ -40,7 +41,7 @@ curl -f https://zed.dev/install.sh | sh
 
 # Install VSCode
 sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
-echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\nautorefresh=1\ntype=rpm-md\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" | sudo tee /etc/yum.repos.d/vscode.repo > /dev/null
+echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\nautorefresh=1\ntype=rpm-md\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" | sudo tee /etc/yum.repos.d/vscode.repo >/dev/null
 dnf check-update
 sudo dnf install -y code # or code-insiders
 
@@ -60,3 +61,4 @@ curl -fsSL https://dl.google.com/linux/direct/google-chrome-stable_current_x86_6
 sudo dnf install -y "$TMP_CHROME_RPM"
 rm -f "$TMP_CHROME_RPM"
 echo "✅ Google Chrome installation completed!"
+
