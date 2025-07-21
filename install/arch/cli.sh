@@ -35,6 +35,7 @@ programs=(
   starship
   tealdeer
   tmux
+  topgrade
   trash-cli
   uv
   vim
