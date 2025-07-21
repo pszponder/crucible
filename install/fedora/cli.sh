@@ -42,6 +42,7 @@ programs_brew=(
   mise
   neovim
   ollama
+  pass
   # podman
   ripgrep
   starship

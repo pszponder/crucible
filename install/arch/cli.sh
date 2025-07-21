@@ -30,6 +30,7 @@ programs=(
   ollama
   # podman
   pacman-contrib
+  pass
   postgresql-libs
   ripgrep
   starship
