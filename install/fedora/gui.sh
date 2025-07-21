@@ -20,7 +20,7 @@ programs_flatpak=(
   it.mijorus.collector
   it.mijorus.smile
   com.jeffser.Pigment
-  io.podman_desktop.PodmanDesktop
+  # io.podman_desktop.PodmanDesktop
   com.discordapp.Discord
   org.flameshot.Flameshot
   org.gimp.GIMP
