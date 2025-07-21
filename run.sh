@@ -133,8 +133,35 @@ setup_arch() {
 setup_debian() {
   local machine_type="$1"
   print_status "$GREEN" "💻 Setting up Debian/Ubuntu $machine_type..."
-  # Place specific Debian/Ubuntu setup steps here
-  # Use $machine_type to branch logic as above
+
+  # Ensure git is installed
+  if ! command -v git &> /dev/null; then
+    print_status "$YELLOW" "🔄 git not found. Installing..."
+    sudo apt update && sudo apt install -y git
+  fi
+
+  echo -e "\nCloning Crucible..."
+  rm -rf $HOME/.local/share/crucible/
+  git clone https://github.com/pszponder/crucible.git $HOME/.local/share/crucible >/dev/null
+
+  echo -e "\n $machine_type installation starting..."
+  SCRIPTS_DIR="$HOME/.local/share/crucible/install"
+
+  # Common scripts for both server and workstation
+  # $SCRIPTS_DIR/debian/system.sh
+  # $SCRIPTS_DIR/debian/directories.sh
+  # $SCRIPTS_DIR/debian/flatpak.sh
+  # $SCRIPTS_DIR/debian/brew.sh
+  # $SCRIPTS_DIR/debian/cli.sh
+  # $SCRIPTS_DIR/common/ai.sh
+
+  if [[ "$machine_type" == "server" ]]; then
+    $SCRIPTS_DIR/debian/docker.sh
+  fi
+
+  if [[ "$machine_type" == "workstation" ]]; then
+    $SCRIPTS_DIR/debian/docker_desktop.sh
+  fi
 }
 
 # Example of Fedora setup
@@ -156,15 +183,19 @@ setup_fedora() {
   $SCRIPTS_DIR/fedora/system.sh
   $SCRIPTS_DIR/fedora/directories.sh
   $SCRIPTS_DIR/fedora/flatpak.sh
-  $SCRIPTS_DIR/fedora/docker.sh
   $SCRIPTS_DIR/fedora/brew.sh
   $SCRIPTS_DIR/fedora/cli.sh
   $SCRIPTS_DIR/common/ai.sh
+
+  if [[ "$machine_type" == "server" ]]; then
+    $SCRIPTS_DIR/fedora/docker.sh
+  fi
 
   if [[ "$machine_type" == "workstation" ]]; then
     $SCRIPTS_DIR/fedora/gui.sh
     $SCRIPTS_DIR/fedora/fonts.sh
     $SCRIPTS_DIR/fedora/theme.sh
+    $SCRIPTS_DIR/fedora/docker_desktop.sh
   fi
 }
 
