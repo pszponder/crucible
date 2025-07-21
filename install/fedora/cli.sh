@@ -47,6 +47,7 @@ programs_brew=(
   starship
   tealdeer
   tmux
+  topgrade
   trash-cli
   unzip
   uv
