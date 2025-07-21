@@ -102,14 +102,17 @@ setup_arch() {
   $SCRIPTS_DIR/arch/system.sh
   $SCRIPTS_DIR/arch/gpu.sh
   $SCRIPTS_DIR/arch/fonts.sh
-  $SCRIPTS_DIR/arch/docker.sh
   $SCRIPTS_DIR/arch/cli.sh
   $SCRIPTS_DIR/arch/mimetypes.sh
   $SCRIPTS_DIR/arch/directories.sh
   $SCRIPTS_DIR/common/ai.sh
 
+  if [[ "$machine_type" == "server" ]]; then
+    $SCRIPTS_DIR/arch/docker.sh
+  fi
+
   if [[ "$machine_type" == "workstation" ]]; then
-    $SCRIPTS_DIR/arch/hyprland.sh
+    # $SCRIPTS_DIR/arch/hyprland.sh
     # $SCRIPTS_DIR/arch/power.sh
     $SCRIPTS_DIR/arch/bluetooth.sh
     $SCRIPTS_DIR/arch/printer.sh
@@ -119,6 +122,7 @@ setup_arch() {
     $SCRIPTS_DIR/arch/desktop.sh
     $SCRIPTS_DIR/arch/theme.sh
     $SCRIPTS_DIR/arch/passwords.sh
+    $SCRIPTS_DIR/arch/docker_desktop.sh
   fi
 
   # Ensure locate is up to date now that everything has been installed
