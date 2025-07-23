@@ -106,10 +106,10 @@ setup_arch() {
   $SCRIPTS_DIR/arch/mimetypes.sh
   $SCRIPTS_DIR/arch/directories.sh
   $SCRIPTS_DIR/common/ai.sh
-  # $SCRIPTS_DIR/arch/docker.sh
+  $SCRIPTS_DIR/arch/docker.sh
 
   if [[ "$machine_type" == "server" ]]; then
-    $SCRIPTS_DIR/arch/docker.sh
+    # $SCRIPTS_DIR/arch/docker.sh
   fi
 
   if [[ "$machine_type" == "workstation" ]]; then
@@ -124,7 +124,7 @@ setup_arch() {
     $SCRIPTS_DIR/arch/theme.sh
     $SCRIPTS_DIR/arch/passwords.sh
     # $SCRIPTS_DIR/arch/docker_desktop.sh
-    $SCRIPTS_DIR/arch/docker.sh
+    # $SCRIPTS_DIR/arch/docker.sh
   fi
 
   # Ensure locate is up to date now that everything has been installed
@@ -156,14 +156,15 @@ setup_debian() {
   # $SCRIPTS_DIR/debian/brew.sh
   # $SCRIPTS_DIR/debian/cli.sh
   # $SCRIPTS_DIR/common/ai.sh
+  $SCRIPTS_DIR/debian/docker.sh
 
   if [[ "$machine_type" == "server" ]]; then
-    $SCRIPTS_DIR/debian/docker.sh
+    # $SCRIPTS_DIR/debian/docker.sh
   fi
 
   if [[ "$machine_type" == "workstation" ]]; then
     # $SCRIPTS_DIR/debian/docker_desktop.sh
-    $SCRIPTS_DIR/debian/docker.sh
+    # $SCRIPTS_DIR/debian/docker.sh
   fi
 }
 
@@ -189,9 +190,10 @@ setup_fedora() {
   $SCRIPTS_DIR/fedora/brew.sh
   $SCRIPTS_DIR/fedora/cli.sh
   $SCRIPTS_DIR/common/ai.sh
+  $SCRIPTS_DIR/fedora/docker.sh
 
   if [[ "$machine_type" == "server" ]]; then
-    $SCRIPTS_DIR/fedora/docker.sh
+    # $SCRIPTS_DIR/fedora/docker.sh
   fi
 
   if [[ "$machine_type" == "workstation" ]]; then
@@ -199,7 +201,7 @@ setup_fedora() {
     $SCRIPTS_DIR/fedora/fonts.sh
     $SCRIPTS_DIR/fedora/theme.sh
     # $SCRIPTS_DIR/fedora/docker_desktop.sh
-    $SCRIPTS_DIR/fedora/docker.sh
+    # $SCRIPTS_DIR/fedora/docker.sh
   fi
 }
 
